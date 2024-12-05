@@ -19,6 +19,7 @@
   margin: 0;
   padding: 0 10px 10px;
   max-height:300px;
+  min-width: 100px;
   overflow-x:hidden;
 }
 .top-bar {
@@ -119,4 +120,11 @@ img {
     position:fixed;
     left:0px;
     bottom:0;
+}
+
+.input-sm-chat_input{
+    height: 30px;
+    width: 200px;
+    padding: 10px;
+    border-radius: 8px;
 }

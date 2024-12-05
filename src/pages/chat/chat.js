@@ -118,7 +118,7 @@ const Chat = () => {
                                     value={message}
                                     onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
                                     onChange={(event) => setMessage(event.target.value)}
-                                    className="form-control input-sm chat_input" placeholder="Write your message here..." />
+                                    className="form-control input-sm-chat_input" placeholder="Write your message here..." />
 
                             </div>
                         </div>
