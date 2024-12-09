@@ -18,7 +18,7 @@ const RegisterPage = () => {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:8000/register', {
+      const response = await axios.post('https://chat-2-1dgm.onrender.com/register', {
         username,
         employeeId,
         password
