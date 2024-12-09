@@ -11,7 +11,7 @@ const Chat = () => {
     const [onlineUsers, setOnlineUsers] = useState([]);
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
-    const socketUrl = 'http://localhost:8000';
+    const socketUrl = 'https://chat-2-1dgm.onrender.com';
     const [selectedEmployeeId, setSelectedEmployeeId] = useState(null); // Store the selected employeeId
 
     const messageEndRef = useRef(null); // Ref for scrolling to the bottom
@@ -23,7 +23,7 @@ const Chat = () => {
     const getMessages = async () => {
         if (!selectedEmployeeId) return;
         try {
-            const response = await axios.get(`http://localhost:8000/getMessages`, {
+            const response = await axios.get(`https://chat-2-1dgm.onrender.com/getMessages`, {
                 params: { sender: employeeId, receiver: selectedEmployeeId }
             });
             setMessages(response.data.messages); // Set the fetched messages
@@ -34,7 +34,7 @@ const Chat = () => {
 
     const getUser = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/users');
+            const response = await axios.get('https://chat-2-1dgm.onrender.com/users');
             const filteredData = response.data.filter(item => item.username !== user);
             setUsers(filteredData); // Filter out the current user from the list
         } catch (err) {
