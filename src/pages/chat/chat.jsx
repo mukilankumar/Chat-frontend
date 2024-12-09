@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import io from 'socket.io-client'
 import './chat.css'
+import { useLocation } from 'react-router-dom';
 
 let socket;
 const Chat = () => {
@@ -9,11 +10,13 @@ const Chat = () => {
     const [users, setUsers] = useState([]);
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
-    const socketUrl = 'https://chat-2-1dgm.onrender.com'
+    const socketUrl = 'http://localhost:8000'
 
     useEffect(() => {
-        const search = window.location.search;
-        const params = new URLSearchParams(search);
+        const location = useLocation();
+  
+        // Use URLSearchParams to extract query parameters from the search string
+        const params = new URLSearchParams(location.search)
         const user = params.get('name');
         const room = params.get('room');
 
@@ -71,12 +74,14 @@ const Chat = () => {
                 <div className="col-xs-4 col-md-4">
                     <p>Active Users</p>
                     <ul>
-                        {
+                        {Array.isArray(users) && users.length > 0 ? (
                             users.map((e, i) => (
-                                <li key={i}>{e.user}</li>
+                            <li key={i} className="py-1">{e.user}</li>
                             ))
-                        }
-                    </ul>
+                        ) : (
+                            <li>No users available</li> // Display a fallback if users is empty or not an array
+                        )}
+                        </ul>
                 </div>
                 <div className="col-xs-8 col-md-8">
                     <div className="panel panel-default">
@@ -118,7 +123,7 @@ const Chat = () => {
                                     value={message}
                                     onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
                                     onChange={(event) => setMessage(event.target.value)}
-                                    className="form-control input-sm-chat_input" placeholder="Write your message here..." />
+                                    className="form-control input-sm chat_input" placeholder="Write your message here..." />
 
                             </div>
                         </div>
